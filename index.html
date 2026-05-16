@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="mycelium">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ROOTMENDER · cryptobotanical apothecary · deep earth tonics</title>
+  <!-- Typography: organic herbal + earthy sans with spore-like curves -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,600;6..12,700;6..12,800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root[data-theme="mycelium"] {
+      --bg: #0e1410;
+      --surface: #1a241d;
+      --surface-elevated: #28382a;
+      --text: #e7f0e3;
+      --text-soft: #bfd9b5;
+      --text-muted: #5d7553;
+      --accent: #7ba05b;
+      --accent-glow: #9bc47a;
+      --accent-deep: #5c8040;
+      --accent-subtle: #2f4028;
+      --border-light: #3c5538;
+      --shadow-sm: 0 12px 28px -10px rgba(0,0,0,0.6);
+      --shadow-lg: 0 28px 45px -14px rgba(0,0,0,0.8);
+      --transition: 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      --radius-card: 28px 8px 28px 8px;
+      --grid-gap: 1.8rem;
+    }
+
+    :root[data-theme="spore"] {
+      --bg: #f2f6ef;
+      --surface: #ffffff;
+      --surface-elevated: #fafcf5;
+      --text: #2c3a24;
+      --text-soft: #5a7350;
+      --text-muted: #bfcfb0;
+      --accent: #7a9c5e;
+      --accent-glow: #9bbd7a;
+      --accent-deep: #5c7a42;
+      --accent-subtle: #e2ecd9;
+      --border-light: #d2e0c6;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Nunito Sans', sans-serif;
+      scroll-behavior: smooth;
+      font-weight: 400;
+      line-height: 1.45;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--surface); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 20px; }
+
+    /* header — herbal apothecary */
+    .rootmender-header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      background: rgba(14, 20, 16, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 2px solid var(--accent);
+      transition: var(--transition);
+    }
+    [data-theme="spore"] .rootmender-header {
+      background: rgba(242, 246, 239, 0.96);
+      border-bottom-color: var(--accent);
+    }
+
+    .nav-root {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0.9rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .brand-root {
+      font-family: 'Newsreader', serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--accent-glow);
+      text-transform: uppercase;
+      border-bottom: 3px dotted var(--accent);
+      display: inline-block;
+    }
+    .brand-root small {
+      font-size: 0.55rem;
+      font-weight: 400;
+      letter-spacing: 3px;
+      margin-left: 8px;
+      color: var(--text-soft);
+    }
+
+    .nav-root-links {
+      display: flex;
+      gap: 2rem;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+    }
+    .nav-root-links a {
+      color: var(--text-soft);
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .nav-root-links a:hover { color: var(--accent-glow); border-bottom: 2px solid; padding-bottom: 2px; }
+
+    .root-utils {
+      display: flex;
+      gap: 1.4rem;
+      align-items: center;
+    }
+    #themeToggleRoot {
+      background: var(--accent-subtle);
+      border: none;
+      padding: 5px 12px;
+      border-radius: 60px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text);
+    }
+    .root-cart {
+      position: relative;
+      cursor: pointer;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+    }
+    .cart-count-root {
+      background: var(--accent);
+      color: #0e1410;
+      font-size: 0.55rem;
+      font-weight: 800;
+      border-radius: 30px;
+      width: 18px;
+      height: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: -8px;
+      right: -14px;
+    }
+
+    /* hero — deep forest apothecary */
+    .hero-herbal {
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      background-image: url('https://images.unsplash.com/photo-1441974231531-c622288dbd6f?q=80&w=2071&auto=format&fit=crop');
+      background-size: cover;
+      background-position: 50% 45%;
+    }
+    .hero-herbal::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, #0e1410cc 0%, #152016bb 100%);
+      z-index: 1;
+    }
+    .hero-root-content {
+      position: relative;
+      z-index: 2;
+      max-width: 660px;
+      padding: 0 6%;
+    }
+    .hero-root-badge {
+      font-size: 0.6rem;
+      letter-spacing: 5px;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--accent-glow);
+      border-left: 4px solid var(--accent);
+      padding-left: 14px;
+    }
+    .hero-root-title {
+      font-family: 'Newsreader', serif;
+      font-size: clamp(4rem, 12vw, 7rem);
+      font-weight: 700;
+      line-height: 1.0;
+      margin-bottom: 0.8rem;
+      color: #ebf5e4;
+      letter-spacing: -1px;
+    }
+    .hero-root-offer {
+      font-size: 0.7rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      background: rgba(0,0,0,0.45);
+      display: inline-block;
+      padding: 0.45rem 1.2rem;
+      backdrop-filter: blur(4px);
+      border-radius: 60px;
+    }
+
+    .btn-root {
+      background: var(--accent);
+      border: none;
+      padding: 0.85rem 2.2rem;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-block;
+      text-decoration: none;
+      color: #0e1410;
+      border-radius: 60px;
+    }
+    .btn-root:hover {
+      background: var(--accent-glow);
+      transform: scale(0.98);
+    }
+
+    /* collection header */
+    .root-collection {
+      max-width: 1440px;
+      margin: 3rem auto 0.5rem auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.7rem;
+    }
+    .root-collection h2 {
+      font-family: 'Newsreader', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    .root-collection p {
+      color: var(--accent-glow);
+      font-size: 0.6rem;
+      letter-spacing: 2px;
+    }
+
+    /* product grid — fungal relic */
+    .grid-root {
+      max-width: 1440px;
+      margin: 2rem auto 5rem auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--grid-gap);
+    }
+
+    .root-card {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      transition: var(--transition);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+    }
+    .root-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent-glow);
+      box-shadow: var(--shadow-lg);
+    }
+    .root-media {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: var(--surface-elevated);
+    }
+    .root-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .root-card:hover .root-media img { transform: scale(1.03); }
+    .root-quick {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(26, 36, 29, 0.94);
+      backdrop-filter: blur(8px);
+      padding: 0.8rem;
+      opacity: 0;
+      transition: 0.2s;
+      text-align: center;
+    }
+    .root-card:hover .root-quick { opacity: 1; }
+    .root-quick button {
+      background: var(--accent);
+      border: none;
+      width: 90%;
+      padding: 0.6rem;
+      font-size: 0.55rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: 0.2s;
+      color: #111;
+      border-radius: 60px;
+    }
+    .root-quick button:hover { background: white; color: #1a241d; }
+
+    .root-info {
+      padding: 1rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .root-detail h4 {
+      font-size: 0.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--accent-glow);
+      letter-spacing: 2px;
+    }
+    .root-detail h3 {
+      font-family: 'Newsreader', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+    .root-price { text-align: right; }
+    .root-current { font-weight: 800; font-size: 1rem; }
+    .root-old { font-size: 0.65rem; text-decoration: line-through; color: var(--text-muted); margin-left: 0.3rem; }
+
+    /* cart — herbalist satchel */
+    .cart-overlay-root {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(0, 0, 0, 0.96);
+      backdrop-filter: blur(20px);
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.2s;
+    }
+    .cart-overlay-root.active { visibility: visible; opacity: 1; }
+    .cart-root-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      max-width: 520px;
+      height: 100vh;
+      background: var(--surface);
+      border-left: 4px solid var(--accent);
+      box-shadow: var(--shadow-lg);
+      z-index: 2001;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      display: flex;
+      flex-direction: column;
+    }
+    .cart-overlay-root.active .cart-root-panel { transform: translateX(0); }
+    .cart-root-header {
+      padding: 1.4rem;
+      border-bottom: 1px solid var(--accent);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cart-root-header h3 {
+      font-family: 'Newsreader', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent-glow);
+    }
+    .close-root-cart {
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+    .cart-root-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .root-cart-item {
+      display: flex;
+      gap: 1rem;
+      padding: 0.8rem;
+      background: var(--surface-elevated);
+      border-left: 3px solid var(--accent);
+      position: relative;
+      border-radius: 24px;
+    }
+    .root-cart-img {
+      width: 70px;
+      height: 85px;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+    .root-cart-details { flex: 1; }
+    .root-cart-name {
+      font-family: 'Newsreader', serif;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    .root-cart-price { font-size: 0.75rem; color: var(--accent-glow); margin-top: 4px; }
+    .root-cart-qty {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .root-qty-btn {
+      background: var(--accent-subtle);
+      border: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .root-qty-btn:hover { background: var(--accent); color: #111; }
+    .root-remove {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    .cart-root-footer {
+      padding: 1.5rem;
+      border-top: 2px solid var(--accent);
+      background: var(--surface);
+    }
+    .root-total {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 800;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+    .root-checkout {
+      width: 100%;
+      background: var(--accent);
+      border: none;
+      padding: 0.9rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      cursor: pointer;
+      border-radius: 60px;
+      transition: 0.2s;
+      color: #0e1410;
+    }
+    .root-checkout:hover { background: var(--accent-glow); transform: scale(0.98);}
+    .empty-root-cart { text-align: center; color: var(--text-soft); padding: 2rem; font-size: 0.75rem;}
+
+    footer {
+      background: var(--surface-elevated);
+      margin-top: 2rem;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--accent);
+    }
+    .footer-root {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .footer-root-brand {
+      font-family: 'Newsreader', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent-glow);
+    }
+    .footer-root-regions {
+      font-size: 0.5rem;
+      letter-spacing: 3px;
+      color: var(--text-soft);
+      margin: 0.6rem 0 1rem;
+    }
+
+    /* modal — fungal circle */
+    .modal-root {
+      position: fixed;
+      inset: 0;
+      z-index: 2200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.98);
+      backdrop-filter: blur(24px);
+      transition: opacity 0.25s;
+    }
+    .modal-root-block {
+      background: var(--surface);
+      max-width: 530px;
+      width: 100%;
+      border-radius: 80px 12px 80px 12px;
+      border-top: 5px solid var(--accent);
+      padding: 2rem 2rem 2.2rem;
+      position: relative;
+      text-align: center;
+      box-shadow: 0 35px 45px rgba(0,0,0,0.8);
+    }
+    .modal-root-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.2rem;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+    .modal-root-icon {
+      width: 70px;
+      height: 70px;
+      background: rgba(123, 160, 91, 0.2);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+      border-radius: 60px;
+      border: 1px solid var(--accent);
+      color: var(--accent-glow);
+    }
+    .modal-root-title {
+      font-family: 'Newsreader', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--accent-glow);
+      margin-bottom: 0.2rem;
+    }
+    .modal-root-desc {
+      color: var(--text-soft);
+      line-height: 1.5;
+      font-size: 0.85rem;
+      margin: 0.8rem 0;
+    }
+    .modal-root-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.6rem;
+    }
+    .btn-root-primary {
+      background: var(--accent);
+      border: none;
+      padding: 0.7rem 2rem;
+      font-weight: 800;
+      font-size: 0.7rem;
+      border-radius: 60px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      color: #0e1410;
+    }
+    .btn-root-secondary {
+      background: transparent;
+      border: 1px solid var(--accent);
+      padding: 0.7rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.7rem;
+      cursor: pointer;
+      color: var(--text);
+    }
+    .modal-fade-root { opacity: 0; pointer-events: none; transition: opacity 0.2s; display: none; }
+
+    @media (max-width: 780px) {
+      .nav-root { flex-direction: column; gap: 0.6rem; }
+      .grid-root { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- entry modal: ROOTMENDER invitation -->
+<div id="entryModalRoot" class="modal-root">
+  <div class="modal-root-block">
+    <button id="closeRootModal" class="modal-root-close"><i class="fas fa-seedling"></i></button>
+    <div class="modal-root-icon"><i class="fas fa-fungi"></i></div>
+    <h2 class="modal-root-title">ROOTMENDER</h2>
+    <p class="modal-root-desc">Deep earth apothecary · fungal wisdom · botanical resilience. Garments infused with mycelial strength and herbal lore. Enter the grove.</p>
+    <div class="modal-root-buttons">
+      <button id="enterRootBtn" class="btn-root-primary">DRINK THE TINCTURE</button>
+      <button id="laterRootBtn" class="btn-root-secondary">WANDER LATER</button>
+    </div>
+  </div>
+</div>
+
+<header class="rootmender-header">
+  <div class="nav-root">
+    <div class="brand-root">ROOTMENDER<small>· APOTHECARY</small></div>
+    <nav class="nav-root-links">
+      <a href="#shopRoot">HERBARIUM</a>
+      <a href="#shopRoot">TONICS</a>
+      <a href="#shopRoot">FUNGAL</a>
+      <a href="#">ROOTS</a>
+    </nav>
+    <div class="root-utils">
+      <button id="themeToggleRoot">🍄 SPORE MODE</button>
+      <div class="root-cart" id="cartIconRoot">
+        <i class="fas fa-mortar-board"></i>
+        <span class="cart-count-root" id="cartCountRoot">0</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero-herbal">
+    <div class="hero-root-content">
+      <div class="hero-root-badge">MYCELIAL · BOTANICAL · DEEP-ROOTED</div>
+      <h1 class="hero-root-title">ROOTMENDER</h1>
+      <div class="hero-root-offer">First remedy: <strong>15% off</strong> your first herbal artifact</div>
+      <a href="#shopRoot" class="btn-root">ENTER APOTHECARY →</a>
+    </div>
+  </section>
+
+  <div class="root-collection" id="shopRoot">
+    <h2>Fungal Archive · Herbal Core</h2>
+    <p>12 botanical relics</p>
+  </div>
+
+  <div class="grid-root" id="productGridRoot"></div>
+</main>
+
+<footer>
+  <div class="footer-root">
+    <div class="footer-root-brand">ROOTMENDER</div>
+    <div class="footer-root-regions">AMAZON · BORNEAN · CELTIC · SHROUDED FOREST</div>
+    <p style="font-size:0.55rem; opacity:0.7;">© 2026 ROOTMENDER — hewn by mycelium, carried by healers.</p>
+  </div>
+</footer>
+
+<!-- CART SIDEBAR -->
+<div id="cartOverlayRoot" class="cart-overlay-root">
+  <div class="cart-root-panel">
+    <div class="cart-root-header">
+      <h3>🌿 ROOT PACK</h3>
+      <button class="close-root-cart" id="closeCartRoot"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="cart-root-items" id="cartItemsRoot">
+      <div class="empty-root-cart">Your pack is empty.<br>Add botanical gear.</div>
+    </div>
+    <div class="cart-root-footer" id="cartFooterRoot" style="display: none;">
+      <div class="root-total"><span>Total (USD)</span><span id="cartTotalRoot">$0</span></div>
+      <button class="root-checkout" id="checkoutRootBtn">🍄 TINCTURE & CLAIM</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ROOTMENDER collection — cryptobotanical artifacts
+  const rootProducts = [
+    { id: 701, name: "Mycelial Cloak", category: "OUTER", original: 890, price: 756, img: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=687&auto=format&fit=crop", alt: "cloak" },
+    { id: 702, name: "Fern Tunic", category: "TOPS", original: 325, price: 276, img: "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=687&auto=format&fit=crop", alt: "tunic" },
+    { id: 703, name: "Mossweave Shirt", category: "LAYER", original: 560, price: 476, img: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=715&auto=format&fit=crop", alt: "shirt" },
+    { id: 704, name: "Rootbound Pants", category: "BOTTOMS", original: 450, price: 382, img: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=600&auto=format&fit=crop", alt: "pants" },
+    { id: 705, name: "Reishi Anorak", category: "KNIT", original: 770, price: 654, img: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=600&auto=format&fit=crop", alt: "anorak" },
+    { id: 706, name: "Chaga Vest", category: "VEST", original: 400, price: 340, img: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=687&auto=format&fit=crop", alt: "vest" },
+    { id: 707, name: "Lichen Smock", category: "SMOCK", original: 1020, price: 867, img: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=687&auto=format&fit=crop", alt: "smock" },
+    { id: 708, name: "Herbalist Coat", category: "COAT", original: 1350, price: 1147, img: "https://images.unsplash.com/photo-1598032895397-b9472444bf93?q=80&w=2070&auto=format&fit=crop", alt: "coat" },
+    { id: 709, name: "Comfrey Cargo", category: "BOTTOMS", original: 520, price: 442, img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=600&auto=format&fit=crop", alt: "cargo" },
+    { id: 710, name: "Cordyceps Hood", category: "HOODIE", original: 320, price: 272, img: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=764&auto=format&fit=crop", alt: "hoodie" },
+    { id: 711, name: "Spore Shell", category: "OUTER", original: 1750, price: 1487, img: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?q=80&w=688&auto=format&fit=crop", alt: "spore" },
+    { id: 712, name: "Willow Shacket", category: "SHIRT", original: 620, price: 527, img: "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?q=80&w=687&auto=format&fit=crop", alt: "shacket" }
+  ];
+
+  let cartRoot = [];
+
+  const cartOverlayRootDiv = document.getElementById('cartOverlayRoot');
+  const cartRootIcon = document.getElementById('cartIconRoot');
+  const closeCartRootBtn = document.getElementById('closeCartRoot');
+  const cartRootContainer = document.getElementById('cartItemsRoot');
+  const cartRootFooter = document.getElementById('cartFooterRoot');
+  const cartRootTotalSpan = document.getElementById('cartTotalRoot');
+  const cartRootCountSpan = document.getElementById('cartCountRoot');
+
+  function persistRootCart() { localStorage.setItem('ROOTMENDER_CART', JSON.stringify(cartRoot)); }
+  function loadRootCart() {
+    const saved = localStorage.getItem('ROOTMENDER_CART');
+    if (saved) cartRoot = JSON.parse(saved);
+    renderRootCart();
+    updateRootCount();
+  }
+  function updateRootCount() { cartRootCountSpan.innerText = cartRoot.reduce((sum,i)=>sum+i.qty,0); }
+
+  function renderRootCart() {
+    if (!cartRootContainer) return;
+    if (cartRoot.length === 0) {
+      cartRootContainer.innerHTML = '<div class="empty-root-cart">Your pack is empty.<br>Add botanical gear.</div>';
+      cartRootFooter.style.display = 'none';
+      updateRootCount(); persistRootCart(); return;
+    }
+    cartRootFooter.style.display = 'block';
+    let html = ''; let total = 0;
+    cartRoot.forEach(item => {
+      total += item.price * item.qty;
+      html += `<div class="root-cart-item" data-id="${item.id}">
+          <img class="root-cart-img" src="${item.img}" alt="${item.name}">
+          <div class="root-cart-details">
+            <div class="root-cart-name">${item.name}</div>
+            <div class="root-cart-price">$${item.price.toLocaleString()}</div>
+            <div class="root-cart-qty">
+              <button class="root-qty-dec" data-id="${item.id}">−</button>
+              <span>${item.qty}</span>
+              <button class="root-qty-inc" data-id="${item.id}">+</button>
+            </div>
+          </div>
+          <button class="root-remove" data-id="${item.id}"><i class="fas fa-trash-alt"></i></button>
+        </div>`;
+    });
+    cartRootContainer.innerHTML = html;
+    cartRootTotalSpan.innerText = `$${total.toLocaleString()}`;
+    document.querySelectorAll('.root-qty-dec').forEach(btn => btn.addEventListener('click', () => updateRootQty(parseInt(btn.dataset.id), -1)));
+    document.querySelectorAll('.root-qty-inc').forEach(btn => btn.addEventListener('click', () => updateRootQty(parseInt(btn.dataset.id), 1)));
+    document.querySelectorAll('.root-remove').forEach(btn => btn.addEventListener('click', () => removeRootItem(parseInt(btn.dataset.id))));
+    updateRootCount(); persistRootCart();
+  }
+  function updateRootQty(pid, delta) {
+    const idx = cartRoot.findIndex(i=>i.id===pid);
+    if(idx !== -1){
+      const nq = cartRoot[idx].qty + delta;
+      if(nq <= 0) cartRoot.splice(idx,1);
+      else cartRoot[idx].qty = nq;
+      renderRootCart();
+    }
+  }
+  function removeRootItem(pid){ cartRoot = cartRoot.filter(i=>i.id!==pid); renderRootCart(); }
+  function addToRootCart(pid){
+    const prod = rootProducts.find(p=>p.id===pid);
+    if(!prod) return;
+    const existing = cartRoot.find(i=>i.id===pid);
+    if(existing) existing.qty += 1;
+    else cartRoot.push({id:prod.id, name:prod.name, price:prod.price, qty:1, img:prod.img});
+    renderRootCart();
+    const btn = document.querySelector(`.root-add-${pid}`);
+    if(btn){ let old = btn.innerText; btn.innerText="✓ ADDED"; setTimeout(()=>btn.innerText=old,700); }
+    cartOverlayRootDiv.classList.add('active');
+  }
+
+  function renderRootProducts() {
+    const container = document.getElementById('productGridRoot');
+    if(!container) return;
+    container.innerHTML = '';
+    rootProducts.forEach(p => {
+      const disc = Math.round(((p.original-p.price)/p.original)*100);
+      const card = document.createElement('div');
+      card.className = 'root-card';
+      card.innerHTML = `
+        <div class="root-media">
+          <img src="${p.img}" alt="${p.alt||p.name}" loading="lazy">
+          <div class="root-quick"><button class="root-add-${p.id} add-root-btn" data-id="${p.id}">🌿 ADD TO PACK</button></div>
+        </div>
+        <div class="root-info">
+          <div class="root-detail"><h4>${p.category}</h4><h3>${p.name}</h3></div>
+          <div class="root-price"><span class="root-current">$${p.price.toLocaleString()}</span><span class="root-old">$${p.original.toLocaleString()}</span><span style="font-size:0.55rem;color:var(--accent-glow);display:block;text-align:right;">-${disc}%</span></div>
+        </div>`;
+      container.appendChild(card);
+    });
+    document.querySelectorAll('.add-root-btn').forEach(btn => btn.addEventListener('click', (e)=>{ e.preventDefault(); addToRootCart(parseInt(btn.dataset.id)); }));
+  }
+
+  function initThemeRoot() {
+    const stored = localStorage.getItem('ROOTMENDER-theme');
+    let theme = stored || 'mycelium';
+    document.documentElement.setAttribute('data-theme', theme);
+    const toggle = document.getElementById('themeToggleRoot');
+    if(toggle) toggle.textContent = theme === 'mycelium' ? '🍄 SPORE MODE' : '🌱 MYCELIUM MODE';
+  }
+  function toggleThemeRoot() {
+    const curr = document.documentElement.getAttribute('data-theme');
+    const next = curr === 'mycelium' ? 'spore' : 'mycelium';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('ROOTMENDER-theme', next);
+    const toggleBtn = document.getElementById('themeToggleRoot');
+    if(toggleBtn) toggleBtn.textContent = next === 'mycelium' ? '🍄 SPORE MODE' : '🌱 MYCELIUM MODE';
+  }
+
+  // modal handlers
+  const modalRootElem = document.getElementById('entryModalRoot');
+  const enterRoot = document.getElementById('enterRootBtn'), laterRoot = document.getElementById('laterRootBtn'), closeRootModalBtn = document.getElementById('closeRootModal');
+  function closeRootModalFunc() {
+    if(modalRootElem){
+      modalRootElem.classList.add('modal-fade-root');
+      setTimeout(()=>modalRootElem.style.display='none',200);
+    }
+  }
+  if(enterRoot) enterRoot.addEventListener('click', closeRootModalFunc);
+  if(laterRoot) laterRoot.addEventListener('click', closeRootModalFunc);
+  if(closeRootModalBtn) closeRootModalBtn.addEventListener('click', closeRootModalFunc);
+  if(modalRootElem) modalRootElem.addEventListener('click',(e)=>{ if(e.target===modalRootElem) closeRootModalFunc(); });
+
+  cartRootIcon?.addEventListener('click',()=>cartOverlayRootDiv.classList.add('active'));
+  closeCartRootBtn?.addEventListener('click',()=>cartOverlayRootDiv.classList.remove('active'));
+  cartOverlayRootDiv?.addEventListener('click',(e)=>{ if(e.target===cartOverlayRootDiv) cartOverlayRootDiv.classList.remove('active'); });
+  document.getElementById('checkoutRootBtn')?.addEventListener('click',()=>{ alert('Rootmender blesses your harvest. Your apothecary order is sealed in earth.'); cartRoot=[]; renderRootCart(); cartOverlayRootDiv.classList.remove('active'); });
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{ a.addEventListener('click',function(e){ const hash=this.getAttribute('href'); if(hash==="#") return; const sec=document.querySelector(hash); if(sec){ e.preventDefault(); sec.scrollIntoView({behavior:'smooth'}); } }); });
+
+  renderRootProducts();
+  initThemeRoot();
+  loadRootCart();
+  document.getElementById('themeToggleRoot')?.addEventListener('click', toggleThemeRoot);
+</script>
+</body>
+</html>
